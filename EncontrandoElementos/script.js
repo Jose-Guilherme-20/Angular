@@ -20,10 +20,28 @@ const strong = document.querySelector("strong");
 
 // Obtendo o primeiro filho
 
-const cont = document.querySelector(".container");
+// const cont = document.querySelector(".container");
 
-console.log(cont.firstChild);
-console.log(cont.firstElementChild);
-cont.firstElementChild.addEventListener("click", () =>
-  console.log("O mundo é seu meu garoto")
-);
+// console.log(cont.firstChild);
+// console.log(cont.firstElementChild);
+// cont.firstElementChild.addEventListener("click", () =>
+//   console.log("O mundo é seu meu garoto")
+// );
+
+// Pegando o ultimo filho
+const container = document.querySelector(".container");
+console.log(container.lastChild);
+console.log(container.lastElementChild);
+
+//pegando o proximo irmão elemento
+const h1 = document.querySelector("h1");
+
+console.log(h1.nextSibling);
+console.log(h1.nextElementSibling);
+
+//pegando o elemento anterior
+
+const p = document.querySelector("p");
+
+console.log(p.previousSibling);
+console.log(p.previousElementSibling);
