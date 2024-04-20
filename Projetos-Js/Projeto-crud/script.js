@@ -116,7 +116,13 @@ const EditDelete = (event) => {
   if (element == "edit") {
     EditClient(index);
   } else {
-    DeleteClient(index);
+    const client = ReadClient()[index];
+    const response = confirm(
+      `Deseja realmente excluir o client ${client.nome}`
+    );
+    if (response) {
+      DeleteClient(index);
+    }
   }
 };
 UpdateTable();
@@ -125,6 +131,7 @@ document
   .querySelector("#cadastrarCliente")
   .addEventListener("click", ActiveModal);
 document.querySelector("#modalClose").addEventListener("click", CloseModal);
+document.querySelector("#cancelar").addEventListener("click", CloseModal);
 
 document.querySelector("#salvar").addEventListener("click", SaveClient);
 
