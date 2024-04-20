@@ -25,12 +25,21 @@ const DeleteClient = (index) => {
   const dbClient = ReadClient();
   dbClient.splice(index, 1);
   SetBanco(dbClient);
+  UpdateTable();
 };
 //CRUD - UPDATE
+
+const fillFields = (client) => {
+  (document.querySelector("#nome").value = client.nome),
+    (document.querySelector("#email").value = client.email),
+    (document.querySelector("#celular").value = client.celular),
+    (document.querySelector("#cidade").value = client.cidade);
+  document.querySelector("#nome").dataset.index = client.index;
+};
 const UpdateClient = (index, client) => {
-  const GetClient = ReadClient();
-  GetClient[index] = client;
-  SetBanco(GetClient);
+  const dbClient = ReadClient();
+  dbClient[index] = client;
+  SetBanco(dbClient);
 };
 
 //CRUD - READ
@@ -38,7 +47,7 @@ const ReadClient = () => GetBanco();
 // fetch("https://localhost/client").then(res => res.json)
 // CRUD - CREATE
 const CreateClient = (client) => {
-  const db_client = GetBanco();
+  const db_client = ReadClient();
   db_client.push(client);
   SetBanco(db_client);
 };
@@ -54,9 +63,16 @@ const SaveClient = () => {
       celular: document.querySelector("#celular").value,
       cidade: document.querySelector("#cidade").value,
     };
-    CreateClient(client);
-    UpdateClient();
-    CloseModal();
+    const index = document.querySelector("#nome").dataset.index;
+    if (index == "new") {
+      CreateClient(client);
+      UpdateTable();
+      CloseModal();
+    } else {
+      UpdateClient(index, client);
+      UpdateTable();
+      CloseModal();
+    }
   }
 };
 const CreateRow = (client, index) => {
@@ -88,10 +104,19 @@ const ClearTable = () => {
 const ClearFields = () => {
   document.querySelectorAll(".modal-field").forEach((x) => (x.value = ""));
 };
+
+const EditClient = (index) => {
+  const client = ReadClient()[index];
+  client.index = index;
+  fillFields(client);
+  ActiveModal();
+};
 const EditDelete = (event) => {
   const [element, index] = event.target.dataset.action.split("-");
   if (element == "edit") {
-    console.log(index);
+    EditClient(index);
+  } else {
+    DeleteClient(index);
   }
 };
 UpdateTable();
