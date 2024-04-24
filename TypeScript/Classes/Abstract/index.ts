@@ -1,4 +1,4 @@
-class Pessoa {
+abstract class Person {
   private Nome: string;
   private Sobrenome: string;
   private Idade: number;
@@ -6,7 +6,7 @@ class Pessoa {
   public NomeCompleto() {
     return `${this.Nome} ${this.Sobrenome}`;
   }
-
+  protected abstract profissao: string;
   get nome() {
     return this.Nome;
   }
@@ -20,12 +20,14 @@ class Pessoa {
     this.Idade = idade;
   }
 }
-class Jose extends Pessoa {
-  constructor(nome: string, sobrenome: string, idade: number) {
+class Joao extends Person {
+  protected profissao: string;
+  constructor(nome: string, sobrenome: string, idade: number, prof: string) {
     super(nome, sobrenome, idade);
+    this.profissao = prof;
   }
 }
-const pessoa1 = new Pessoa("José", "Guilherme", 22);
-console.log(pessoa1.NomeCompleto());
-const pessoa2 = new Jose("João", "vitor", 16);
-console.log(pessoa2.nome);
+const person1 = new Joao("José", "Guilherme", 22, "Tatuador");
+console.log(person1.NomeCompleto());
+const person2 = new Joao("João", "vitor", 16, "Pedreiro");
+console.log(person2.nome);
