@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './title.component.html',
   styleUrl: './title.component.scss',
 })
-export class TitleComponent {
-  public title = 'Sub titulo';
-}
+export class TitleComponent {}
