@@ -11,7 +11,7 @@
 
 <h3>FOR</h3>
 <!--Nova Forma-->
-@if (loadingData$ | async; as data) {
+<!-- @if (loadingData$ | async; as data) {
 <ul>
   @for(item of data; track item) {
   <li>{{ item }}</li>
@@ -20,9 +20,9 @@
 }@else {
 <p>Carregando ...</p>
 }
-<hr />
+<hr /> -->
 <!--Forma antiga-->
-<ng-container *ngIf="loadingData$ | async as data; else loading">
+<!-- <ng-container *ngIf="loadingData$ | async as data; else loading">
   <ul>
     <ng-container *ngFor="let item of data; trackBy: trackByFn">
       <li>{{ item }}</li>
@@ -45,4 +45,45 @@ $first; let l = $last; let e = $even; let o = $odd ){
 }
 
 <input #name type="text" />
-<button (click)="addNewName(name.value)">Add Name</button>
+<button (click)="addNewName(name.value)">Add Name</button> -->
+
+<!-- <ul>
+  @for (item of itens; track item.name) {
+  <li>{{ item.name }}</li>
+  }@empty {
+  <li>Não contém valores</li>
+  }
+</ul>
+
+<ul>
+  <ng-container *ngIf="itens.length === 0; else itensExist">
+    <li>Não contem valores</li>
+  </ng-container>
+  <ng-template #itensExist>
+    <ng-container *ngFor="let item of itens">
+      {{ item.name }}
+    </ng-container>
+  </ng-template>
+</ul> -->
+
+<h3>Switch Case</h3>
+
+@switch (switchCase) { @case ("A") {
+<p>Sim sua letra é: A</p>
+} @case ("B") {
+<p>Sim sua letra é: B</p>
+} }
+
+<!--Forma antiga-->
+
+<ng-container [ngSwitch]="switchCase">
+  <ng-container *ngSwitchCase="'A'">
+    <p>Sua primeira letra é: A</p>
+  </ng-container>
+  <ng-container *ngSwitchCase="'B'">
+    <p>Sim sua letra é: B</p>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <p>Os dados não foram encontrados</p>
+  </ng-container>
+</ng-container>
