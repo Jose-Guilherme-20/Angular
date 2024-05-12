@@ -1,0 +1,13 @@
+<h2>Pipes</h2>
+
+<ul>
+  <li>date:{{ date() | date }}</li>
+  <li>upperCase:{{ "josé guilherme" | uppercase }}</li>
+  <li>lowerCase:{{ "JOSÉ GUILHERME" | lowercase }}</li>
+  <li>Json:{{ json() | json }}</li>
+  <li>Async: {{ loadingData$ | async }}</li>
+  <li>Currency: {{ 200.5 | currency : "BRL" }}</li>
+  <li>Number: {{ 200.0 | number : "1.1-2" }}</li>
+  <li>Percent: {{ 0.1 | percent : "1.0-4" }}</li>
+  <li>Percent: {{ "josé guilherme" | stringCustom : "upper" }}</li>
+</ul>
